@@ -2,6 +2,13 @@
 
 Learn how Copilot Spaces can scale institutional knowledge and streamline organizational processes.
 
+## IST to CST converter
+
+Open `index.html` in a browser, enter a date and time in India Standard Time
+(UTC+05:30), and select **Convert to CST**. The result uses Central Standard
+Time (UTC−06:00), including any change of date. CST is a fixed offset; it
+does not automatically switch to Central Daylight Time.
+
 ## What are Copilot Spaces?
 
 - Copilot Spaces let you organize the context that Copilot uses to answer your questions.

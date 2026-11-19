@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IST to CST converter</title>
+  <style>
+    body { font-family: system-ui, sans-serif; line-height: 1.5; max-width: 32rem; margin: 3rem auto; padding: 0 1rem; }
+    label, input, button { display: block; }
+    input, button { font: inherit; margin-top: 0.5rem; padding: 0.5rem; }
+    button { cursor: pointer; margin-top: 1rem; }
+    output { display: block; margin-top: 1.5rem; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>IST to CST converter</h1>
+    <p>Convert India Standard Time (UTC+05:30) to Central Standard Time (UTC−06:00).</p>
+    <p>CST is a fixed offset; this converter does not adjust for Central Daylight Time.</p>
+    <form id="converter">
+      <label for="ist">Date and time in IST</label>
+      <input id="ist" type="datetime-local" required>
+      <button type="submit">Convert to CST</button>
+    </form>
+    <output id="result" aria-live="polite"></output>
+  </main>
+  <script>
+    const form = document.getElementById('converter');
+    const input = document.getElementById('ist');
+    const result = document.getElementById('result');
+
+    input.addEventListener('input', () => { result.textContent = ''; });
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const instant = new Date(input.value + '+05:30');
+      const cst = new Date(instant.getTime() - 6 * 60 * 60 * 1000);
+      if (Number.isNaN(cst.getTime())) {
+        result.textContent = 'Please enter a valid date and time.';
+        return;
+      }
+      result.textContent = cst.toISOString().replace('T', ' ').replace(/:00\.000Z$/, '') + ' CST';
+    });
+  </script>
+</body>
+</html>
